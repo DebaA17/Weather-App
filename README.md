@@ -23,8 +23,8 @@ A modern, responsive weather application built with Node.js and Express. Feature
 
 1. Clone the repository:
    ```bash
-   git clone <your-repo-url>
-   cd weather-app
+   git clone https://github.com/DebaA17/Weather-App.git
+   cd Weather-App
    ```
 
 2. Install dependencies:

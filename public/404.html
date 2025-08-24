@@ -166,38 +166,40 @@
         <div class="terminal">
             <div class="header">
                 <div class="error-code glitch">404</div>
-                <div class="error-message">ACCESS DENIED</div>
+                <div class="error-message">Page Not Found</div>
             </div>
-            
             <div class="skull">💀</div>
-            
             <div class="terminal-text">
                 <div class="typing">$ UNAUTHORIZED ACCESS DETECTED</div>
             </div>
-            
             <div class="system-info">
                 <div class="terminal-text">[SYSTEM] Intrusion attempt logged</div>
                 <div class="terminal-text">[SYSTEM] IP address traced</div>
                 <div class="terminal-text">[SYSTEM] Location: CLASSIFIED</div>
                 <div class="terminal-text">[SYSTEM] Status: MONITORED</div>
             </div>
-            
             <div class="warning">
                 ⚠️ WARNING: This incident has been reported ⚠️
             </div>
-            
             <div class="terminal-text">
                 The page you're looking for doesn't exist in this dimension.
                 <br>Return to the main terminal before the system locks you out.
             </div>
-            
             <div style="text-align: center;">
                 <button class="back-btn" onclick="window.location.href='/'">
                     [ESCAPE] Back to Terminal
                 </button>
             </div>
         </div>
+        <div style="color:#00ff00; font-size:1em; margin-bottom:10px;">
+            <strong>Browser Details:</strong>
+            <span id="browserDetails"></span>
+        </div>
+        <footer style="color:#00ff00; font-size:0.95em; margin-top:10px;">Created by Debasis</footer>
     </div>
+    <script>
+      document.getElementById('browserDetails').textContent = navigator.userAgent;
+    </script>
 
     <script>
         const canvas = document.querySelector('.matrix');

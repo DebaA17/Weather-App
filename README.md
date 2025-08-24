@@ -1,6 +1,7 @@
+
 # Weather App
 
-A modern, responsive weather application built with Node.js and Express. Features a beautiful UI with glassmorphism effects, animations, and secure API key handling.
+A modern, responsive weather application deployed on Netlify using serverless functions for secure API key handling. Features a beautiful UI with glassmorphism effects, animations, and real-time weather data.
 
 ## Features
 
@@ -8,18 +9,18 @@ A modern, responsive weather application built with Node.js and Express. Feature
 - 🎨 Modern glassmorphism UI with gradient backgrounds
 - 📱 Fully responsive design for desktop and mobile
 - ✨ Smooth animations and hover effects
-- 🔒 Secure API key handling with environment variables
+- 🔒 Secure API key handling via Netlify environment variables
 - 🚀 Loading states and error handling
 - ⌨️ Keyboard support (Enter key to search)
 
 ## Tech Stack
 
-- **Backend**: Node.js, Express
 - **Frontend**: HTML5, CSS3, JavaScript
+- **Backend**: Netlify Functions (Node.js)
 - **API**: WeatherAPI.com
-- **Security**: Environment variables with dotenv
+- **Security**: Netlify environment variables
 
-## Installation
+## Deployment (Netlify)
 
 1. Clone the repository:
    ```bash
@@ -27,45 +28,37 @@ A modern, responsive weather application built with Node.js and Express. Feature
    cd Weather-App
    ```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+2. Push your code to a Git provider (GitHub, GitLab, etc.).
 
-3. Get your API key from [WeatherAPI.com](https://www.weatherapi.com/)
+3. Go to [Netlify](https://app.netlify.com/) and create a new site from your repository.
 
-4. Create a `.env` file in the root directory:
-   ```
-   WEATHER_API_KEY=your_api_key_here
-   ```
+4. Set the **Publish directory** to `public`.
 
-5. Start the server:
-   ```bash
-   npm start
-   ```
+5. Add your API key in Netlify:
+   - Go to Site settings > Environment variables
+   - Add `WEATHER_API_KEY=your_api_key_here`
 
-6. Open your browser and navigate to `http://localhost:3000`
+6. The weather API logic is in `netlify/functions/weather.js`.
+   - The frontend calls `/.netlify/functions/weather?city=YourCity`
 
-## API Key Security
-
-The weather API key is stored securely using environment variables:
-- The `.env` file contains the API key
-- The file is listed in `.gitignore` to prevent it from being committed
-- The server acts as a proxy, keeping the API key hidden from the frontend
+7. Netlify will auto-deploy on push. Visit your site and enjoy!
 
 ## Project Structure
 
 ```
 weather-app/
-├── .env                 # Environment variables (not committed)
-├── .gitignore          # Git ignore file
-├── package.json        # Dependencies and scripts
-├── server.js           # Express server
-├── README.md           # This file
-└── public/
-    ├── index.html      # Main HTML file
-    ├── styles.css      # CSS with modern animations
-    └── script.js       # Frontend JavaScript
+├── netlify/
+│   └── functions/
+│       └── weather.js      # Netlify serverless function (API proxy)
+├── public/
+│   ├── index.html         # Main HTML file
+│   ├── styles.css         # CSS with modern animations
+│   └── script.js          # Frontend JavaScript
+├── .env.example           # Example environment file
+├── .gitignore             # Git ignore file
+├── package.json           # Dependencies and scripts
+├── README.md              # This file
+└── LICENSE                # License
 ```
 
 ## Features in Detail
@@ -77,8 +70,8 @@ weather-app/
 - Smooth transitions and hover effects
 
 ### Security
-- API key stored in environment variables
-- Server-side proxy to hide API key from frontend
+- API key stored in Netlify environment variables
+- Serverless function proxy to hide API key from frontend
 - Input validation and error handling
 
 ### User Experience

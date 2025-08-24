@@ -30,7 +30,7 @@ document.getElementById('getWeather').addEventListener('click', async () => {
   weatherResult.classList.remove('show');
 
   try {
-    const response = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
+  const response = await fetch(`/.netlify/functions/weather?city=${encodeURIComponent(city)}`);
     const data = await response.json();
 
     if (data.error) {

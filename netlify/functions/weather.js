@@ -7,6 +7,7 @@ exports.handler = async function(event) {
   if (!city) {
     return {
       statusCode: 400,
+      headers: { 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ error: 'City is required.' })
     };
   }
@@ -20,12 +21,14 @@ exports.handler = async function(event) {
       res.on('end', () => {
         resolve({
           statusCode: 200,
+          headers: { 'Access-Control-Allow-Origin': '*' },
           body: data
         });
       });
     }).on('error', (e) => {
       resolve({
         statusCode: 500,
+        headers: { 'Access-Control-Allow-Origin': '*' },
         body: JSON.stringify({ error: 'Failed to fetch weather data.' })
       });
     });

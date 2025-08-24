@@ -13,11 +13,17 @@
       <input type="text" id="city" placeholder="Enter city name">
       <button id="getWeather">Get Weather</button>
       <div id="weatherResult"></div>
+      <div id="browserDetails" style="margin-top:20px; font-size:0.95em; color:#667eea;"></div>
     </div>
   </main>
   <footer>
-    <p>© 2025 Weather App. All rights reserved.</p>
+    <p>Created by Debasis | © 2025 Weather App. All rights reserved.</p>
   </footer>
   <script src="script.js"></script>
+  <script>
+    // Show browser details
+    const browserDetails = document.getElementById('browserDetails');
+    browserDetails.textContent = `Browser: ${navigator.userAgent}`;
+  </script>
 </body>
 </html>

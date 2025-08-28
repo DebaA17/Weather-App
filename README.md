@@ -9,7 +9,7 @@ A modern, responsive weather application deployed on Netlify using serverless fu
 - 🎨 Modern glassmorphism UI with gradient backgrounds
 - 📱 Fully responsive design for desktop and mobile
 - ✨ Smooth animations and hover effects
-- 🔒 Secure API key handling via Netlify environment variables
+- 🔒 Secure API key handling via  environment variables
 - 🚀 Loading states and error handling
 - ⌨️ Keyboard support (Enter key to search)
 
@@ -18,30 +18,8 @@ A modern, responsive weather application deployed on Netlify using serverless fu
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Backend**: Netlify Functions (Node.js)
 - **API**: WeatherAPI.com
-- **Security**: Netlify environment variables
+- **Security**: environment variables
 
-## Deployment (Netlify)
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/DebaA17/Weather-App.git
-   cd Weather-App
-   ```
-
-2. Push your code to a Git provider (GitHub, GitLab, etc.).
-
-3. Go to [Netlify](https://app.netlify.com/) and create a new site from your repository.
-
-4. Set the **Publish directory** to `public`.
-
-5. Add your API key in Netlify:
-   - Go to Site settings > Environment variables
-   - Add `WEATHER_API_KEY=your_api_key_here`
-
-6. The weather API logic is in `netlify/functions/weather.js`.
-   - The frontend calls `/.netlify/functions/weather?city=YourCity`
-
-7. Netlify will auto-deploy on push. Visit your site and enjoy!
 
 ## Project Structure
 
@@ -49,7 +27,7 @@ A modern, responsive weather application deployed on Netlify using serverless fu
 weather-app/
 ├── netlify/
 │   └── functions/
-│       └── weather.js      # Netlify serverless function (API proxy)
+│       └── weather.js          serverless function (API proxy)
 ├── public/
 │   ├── index.html         # Main HTML file
 │   ├── styles.css         # CSS with modern animations

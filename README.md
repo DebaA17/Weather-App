@@ -1,6 +1,7 @@
 
 # Weather App
 
+![Weather App Screenshot](weather.png)
 A modern, responsive weather application deployed on Netlify using serverless functions for secure API key handling. Features a beautiful UI with glassmorphism effects, animations, and real-time weather data.
 
 ## Features

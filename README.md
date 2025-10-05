@@ -3,6 +3,8 @@
 
 ![Weather App Screenshot](weather.png)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1ace9f86-9a42-4476-aea1-8f1706f2105f/deploy-status)](https://app.netlify.com/projects/debasisweather/deploys)
+
 A modern, responsive weather application deployed on Netlify using serverless functions for secure API key handling. Features a beautiful UI with glassmorphism effects, animations, and real-time weather data.
 
 ## Features

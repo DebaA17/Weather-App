@@ -3,6 +3,7 @@ const express = require('express');
 const https = require('https');
 const http = require('http');
 const url = require('url');
+const path = require('path');
 
 const app = express();
 const PORT = 3000;
@@ -23,7 +24,11 @@ app.use((req, res, next) => {
 // Trust proxy for correct IP detection
 app.set('trust proxy', true);
 
-app.use(express.static('public'));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 function makeRequest(requestUrl) {
   return new Promise((resolve, reject) => {
@@ -95,7 +100,7 @@ app.get('/api/weather', async (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).sendFile(__dirname + '/public/404.html');
+  res.status(404).sendFile(__dirname + '/404.html');
 });
 
 app.listen(PORT, () => {

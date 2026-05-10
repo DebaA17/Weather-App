@@ -5,7 +5,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1ace9f86-9a42-4476-aea1-8f1706f2105f/deploy-status)](https://app.netlify.com/projects/debasisweather/deploys)
 
-A modern, responsive weather application deployed on Netlify using serverless functions for secure API key handling. Features a beautiful UI with glassmorphism effects, animations, and real-time weather data.
+A modern, responsive weather application with secure API key handling and a glassmorphism UI. The app now supports Vercel deployment with a root `index.html` and a Vercel serverless API route.
 
 ## Features
 
@@ -20,7 +20,7 @@ A modern, responsive weather application deployed on Netlify using serverless fu
 ## Tech Stack
 
 - **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: Netlify Functions (Node.js)
+- **Backend**: Serverless Functions (Node.js)
 - **API**: WeatherAPI.com
 - **Security**: environment variables
 
@@ -29,9 +29,13 @@ A modern, responsive weather application deployed on Netlify using serverless fu
 
 ```
 weather-app/
+├── api/
+│   └── weather.js          serverless function (API proxy for Vercel)
 ├── netlify/
 │   └── functions/
-│       └── weather.js          serverless function (API proxy)
+│       └── weather.js      legacy Netlify function
+├── index.html              Vercel entry page
+├── 404.html                custom 404 page
 ├── public/
 │   ├── index.html         # Main HTML file
 │   ├── styles.css         # CSS with modern animations
@@ -69,6 +73,15 @@ weather-app/
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
+
+## Deploying To Vercel
+
+1. Push the repository to GitHub.
+2. Import the repo into Vercel.
+3. Add `WEATHER_API_KEY` in Vercel project settings.
+4. Deploy with no custom build command.
+
+The frontend calls `/api/weather`, so the deployed site must include the root `index.html` and the `api/weather.js` function.
 
 ## License
 

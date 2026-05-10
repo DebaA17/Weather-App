@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
-  <link rel="icon" type="image/png" href="cloudy.png">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="/public/cloudy.png">
+  <link rel="stylesheet" href="/public/styles.css">
 </head>
 <body>
   <main>
@@ -20,11 +20,10 @@
   <footer>
     <p>Created by Debasis | © <span id="currentYear"></span> Weather App. All rights reserved.</p>
   </footer>
-  <script src="script.js"></script>
+  <script src="/public/script.js"></script>
   <script>
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    // Show browser details
     const browserDetails = document.getElementById('browserDetails');
     browserDetails.textContent = `Browser: ${navigator.userAgent}`;
   </script>
